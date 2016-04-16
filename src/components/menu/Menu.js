@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router'
 
 export default class Menu extends Component {
     render() {
         return (
             <ul class="nav navbar-nav">
-                <li><a href="#">New game</a></li>
-                <li><a href="#">Players</a></li>
-                <li><a href="#">Courses</a></li>
+                <li><Link to="/">Menu</Link></li>
+                <li><Link to="/">New game</Link></li>
+                <li><Link to="/">Players</Link></li>
+                <li><Link to="/">Courses</Link></li>
             </ul>
         )
     }
