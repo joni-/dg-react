@@ -9,7 +9,7 @@ export default class Menu extends Component {
                 <li><Link to="/">Menu</Link></li>
                 <li><Link to="/">New game</Link></li>
                 <li><Link to="/players">Players</Link></li>
-                <li><Link to="/">Courses</Link></li>
+                <li><Link to="/courses">Courses</Link></li>
             </ul>
         )
     }
