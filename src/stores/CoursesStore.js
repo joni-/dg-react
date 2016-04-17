@@ -28,8 +28,35 @@ class CoursesStore extends EventEmitter {
     getAll() {
         return courses;
     }
+
+    add(name, pars) {
+        courses.push({
+            id: new Date().getTime(),
+            name: name,
+            pars: pars
+        });
+        this.emit('change');
+    }
+
+    addChangeListener(callback) {
+        this.on('change', callback);
+    }
+
+    removeChangeListener(callback) {
+        this.removeListener('change', callback);
+    }
+
+
+    handleAction(action) {
+        switch (action.type) {
+            case 'CREATE_COURSE': {
+                this.add(action.name, action.pars);
+            }
+        }
+    }
 }
 
 const store = new CoursesStore;
+dispatcher.register(store.handleAction.bind(store));
 
 export default store;
