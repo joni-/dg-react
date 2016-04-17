@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PlayersStore from '../stores/PlayersStore';
-
+import dispatcher from '../dispatcher';
 
 export default class PlayersComponent extends Component {
     constructor() {
@@ -34,7 +34,10 @@ export default class PlayersComponent extends Component {
     }
 
     addNewPlayer() {
-        PlayersStore.add(this.state.newPlayerName);
+        dispatcher.dispatch({
+            type: 'CREATE',
+            name: this.state.newPlayerName
+        });
         this.setState({
             newPlayerName: ''
         });

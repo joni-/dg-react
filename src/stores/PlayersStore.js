@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import dispatcher from '../dispatcher';
 
 
 var players = [
@@ -32,6 +33,17 @@ class PlayersStore extends EventEmitter {
     removeChangeListener(callback) {
         this.removeListener('change', callback);
     }
+
+    handleAction(action) {
+        switch (action.type) {
+            case 'CREATE': {
+                this.add(action.name);
+            }
+        }
+    }
 }
 
-export default new PlayersStore();
+const store = new PlayersStore;
+dispatcher.register(store.handleAction.bind(store));
+
+export default store;
