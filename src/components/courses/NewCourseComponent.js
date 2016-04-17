@@ -41,7 +41,31 @@ export default class NewCourseComponent extends Component {
         });
     }
 
+    decreasePar(i) {
+        this.state.pars[i]--;
+        this.setState({
+            pars: this.state.pars
+        });
+    }
+
+    increasePar(i) {
+        this.state.pars[i]++;
+        this.setState({
+            pars: this.state.pars
+        });
+    }
+
     render() {
+        const parList = this.state.pars.map((p, i) => {
+            return (
+                <div key={i}>
+                    {i + 1}
+                    <button onClick={this.decreasePar.bind(this, i)}>-</button>
+                    {p}
+                    <button onClick={this.increasePar.bind(this, i)}>+</button>
+                </div>
+            );
+        });
         return (
             <div>
                 Name: <input value={this.state.name} onChange={this.nameChanged.bind(this)} />
@@ -51,6 +75,7 @@ export default class NewCourseComponent extends Component {
                 {this.state.pars.length}
                 <button onClick={this.increaseHoleCount.bind(this)}>+</button>
                 <br />
+                {parList}
                 <button onClick={this.createCourse.bind(this)}>Add</button>
             </div>
         )

@@ -29,7 +29,7 @@ export default class CoursesComponent extends Component {
 
     render() {
         const courseList = this.state.courses.map((c) => {
-            return (<li key={c.id}>{c.name}</li>);
+            return (<li key={c.id}>{c.name} ({c.pars.length})</li>);
         });
         return (
             <div>
