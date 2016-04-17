@@ -6,6 +6,7 @@ import PlayersStore from '../stores/PlayersStore';
 export default class PlayersComponent extends Component {
     constructor() {
         super();
+        this.onPlayersChange = this.onPlayersChange.bind(this);
         this.state = {
             newPlayerName: '',
             players: PlayersStore.getAll()
@@ -14,13 +15,12 @@ export default class PlayersComponent extends Component {
 
     onPlayersChange() {
         this.setState({
-            newPlayerName: this.state.newPlayerName,
             players: PlayersStore.getAll()
         });
     }
 
     componentWillMount() {
-        PlayersStore.addChangeListener(this.onPlayersChange.bind(this));
+        PlayersStore.addChangeListener(this.onPlayersChange);
     }
 
     componentWillUnmount() {
