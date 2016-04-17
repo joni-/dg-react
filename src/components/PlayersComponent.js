@@ -1,19 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
+import PlayersStore from '../stores/PlayersStore';
 
-var players = [
-    {id: 1, name: 'Foo'},
-    {id: 2, name: 'Bar'},
-    {id: 3, name: 'Baz'},
-    {id: 4, name: 'Zyz'}
-];
 
 export default class PlayersComponent extends Component {
     constructor() {
         super();
         this.state = {
-            newPlayerName: ''
+            newPlayerName: '',
+            players: PlayersStore.getAll()
         };
+    }
+
+    onPlayersChange() {
+        this.setState({
+            newPlayerName: this.state.newPlayerName,
+            players: PlayersStore.getAll()
+        });
+    }
+
+    componentWillMount() {
+        PlayersStore.addChangeListener(this.onPlayersChange.bind(this));
+    }
+
+    componentWillUnmount() {
+        PlayersStore.removeChangeListener(this.onPlayersChange);
     }
 
     playerNameChanged(e) {
@@ -23,18 +34,14 @@ export default class PlayersComponent extends Component {
     }
 
     addNewPlayer() {
-        const name = this.state.newPlayerName;
-        players.push({
-            id: new Date().getTime(),
-            name: this.state.newPlayerName
-        });
+        PlayersStore.add(this.state.newPlayerName);
         this.setState({
             newPlayerName: ''
         });
     }
 
     render() {
-        const playerList = players.map((p) => {
+        const playerList = this.state.players.map((p) => {
             return <li key={p.id}>{p.name}</li>;
         });
         return (
