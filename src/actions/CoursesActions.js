@@ -8,3 +8,10 @@ export function createCourse(name, pars) {
         pars: pars
     });
 }
+
+export function deleteCourse(id) {
+    dispatcher.dispatch({
+        type: 'DELETE_COURSE',
+        id: id
+    });
+}

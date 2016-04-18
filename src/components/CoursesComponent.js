@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import CoursesStore from '../stores/CoursesStore';
 import NewCourseComponent from './courses/NewCourseComponent';
+import * as CoursesActions from '../actions/CoursesActions';
 
 
 export default class CoursesComponent extends Component {
@@ -27,9 +28,13 @@ export default class CoursesComponent extends Component {
         CoursesStore.removeChangeListener(this.getCourses);
     }
 
+    deleteCourse(course) {
+        CoursesActions.deleteCourse(course.id);
+    }
+
     render() {
         const courseList = this.state.courses.map((c) => {
-            return (<li key={c.id}>{c.name} ({c.pars.length})</li>);
+            return (<li key={c.id}>{c.name} ({c.pars.length}) <button onClick={this.deleteCourse.bind(this, c)}>X</button></li>);
         });
         return (
             <div>

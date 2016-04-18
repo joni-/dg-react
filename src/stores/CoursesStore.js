@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
@@ -38,6 +39,11 @@ class CoursesStore extends EventEmitter {
         this.emit('change');
     }
 
+    delete(id) {
+        _.remove(courses, (c) => { return c.id === id; });
+        this.emit('change');
+    }
+
     addChangeListener(callback) {
         this.on('change', callback);
     }
@@ -51,6 +57,9 @@ class CoursesStore extends EventEmitter {
         switch (action.type) {
             case 'CREATE_COURSE': {
                 this.add(action.name, action.pars);
+            }
+            case 'DELETE_COURSE': {
+                this.delete(action.id);
             }
         }
     }
