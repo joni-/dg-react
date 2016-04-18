@@ -41,9 +41,13 @@ export default class PlayersComponent extends Component {
         });
     }
 
+    deletePlayer(p) {
+        PlayersActions.deletePlayer(p.id);
+    }
+
     render() {
         const playerList = this.state.players.map((p) => {
-            return <li key={p.id}>{p.name}</li>;
+            return <li key={p.id}>{p.name} <button onClick={this.deletePlayer.bind(this, p)}>X</button></li>;
         });
         return (
             <div>

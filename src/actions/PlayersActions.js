@@ -7,3 +7,10 @@ export function createPlayer(name) {
         name: name
     });
 }
+
+export function deletePlayer(id) {
+    dispatcher.dispatch({
+        type: 'DELETE_PLAYER',
+        id: id
+    });
+}

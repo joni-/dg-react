@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
@@ -26,6 +27,11 @@ class PlayersStore extends EventEmitter {
         this.emit('change');
     }
 
+    delete(id) {
+        _.remove(players, (p) => { return p.id === id; });
+        this.emit('change');
+    }
+
     addChangeListener(callback) {
         this.on('change', callback);
     }
@@ -38,6 +44,9 @@ class PlayersStore extends EventEmitter {
         switch (action.type) {
             case 'CREATE_PLAYER': {
                 this.add(action.name);
+            }
+            case 'DELETE_PLAYER': {
+                this.delete(action.id);
             }
         }
     }
