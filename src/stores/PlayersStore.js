@@ -36,7 +36,7 @@ class PlayersStore extends EventEmitter {
 
     handleAction(action) {
         switch (action.type) {
-            case 'CREATE': {
+            case 'CREATE_PLAYER': {
                 this.add(action.name);
             }
         }
