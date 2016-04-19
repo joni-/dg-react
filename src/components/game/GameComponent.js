@@ -1,12 +1,15 @@
 import * as _ from 'lodash';
 import React, { Component } from 'react'
 
+import Scorecard from './Scorecard';
+
 
 export default class GameComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentHole: 0,
+            showScorecard: false,
             players: this.props.players.map((p) => {
                 return _.extend(p, {scores: _.map(this.props.course.pars, _.clone)});
             })
@@ -39,6 +42,12 @@ export default class GameComponent extends Component {
         });
     }
 
+    toggleScorecard() {
+        this.setState({
+            showScorecard: !this.state.showScorecard
+        });
+    }
+
     render() {
         const playerList = this.state.players.map((p) => {
             const totalScore = _.sum(p.scores);
@@ -53,6 +62,11 @@ export default class GameComponent extends Component {
             );
         });
 
+        var scorecard = null;
+        if (this.state.showScorecard) {
+            scorecard = (<Scorecard course={this.props.course} players={this.state.players} />);
+        }
+
         return (
             <div>
                 <button onClick={this.previousHole.bind(this)}>Previous</button>
@@ -60,6 +74,10 @@ export default class GameComponent extends Component {
                 <button onClick={this.nextHole.bind(this)}>Next</button>
 
                 {playerList}
+
+                <br />
+                <button onClick={this.toggleScorecard.bind(this)}>Toggle scorecard</button>
+                {scorecard}
             </div>
         )
     }
