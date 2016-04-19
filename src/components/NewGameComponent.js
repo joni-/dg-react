@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import SelectPlayersComponent from './game/SelectPlayersComponent';
 import SelectCourseComponent from './game/SelectCourseComponent';
+import GameComponent from './game/GameComponent';
 
 
 export default class NewGameComponent extends Component {
@@ -15,7 +16,9 @@ export default class NewGameComponent extends Component {
     }
 
     courseSelected(course) {
-        console.log(course);
+        this.setState({
+            currentComponent: (<GameComponent course={course} players={this.state.players} />)
+        });
     }
 
     playersSelected(players) {
