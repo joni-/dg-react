@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import React, { Component } from 'react'
 
 import SelectPlayersComponent from './game/SelectPlayersComponent';
@@ -19,7 +20,8 @@ export default class GameComponent extends Component {
 
     playersSelected(players) {
         this.setState({
-            currentComponent: (<SelectCourseComponent onCourseSelected={this.courseSelected.bind(this)} />)
+            currentComponent: (<SelectCourseComponent onCourseSelected={this.courseSelected.bind(this)} />),
+            players: _.filter(players, (p) => { return p.selected; })
         });
     }
 
