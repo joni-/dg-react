@@ -5,7 +5,7 @@ import SelectPlayersComponent from './game/SelectPlayersComponent';
 import SelectCourseComponent from './game/SelectCourseComponent';
 
 
-export default class GameComponent extends Component {
+export default class NewGameComponent extends Component {
     constructor() {
         super();
         var initialComponent = (<SelectPlayersComponent onPlayersSelected={this.playersSelected.bind(this)} />);
