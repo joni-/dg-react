@@ -6,8 +6,8 @@ export default class SelectCourseComponent extends Component {
     render() {
         const courseList = CoursesStore.getAll().map((c) => {
             return (
-                <div>
-                    <button key={c.id} onClick={this.props.onCourseSelected.bind(this, c)}>{c.name}</button>
+                <div key={c.id}>
+                    <button onClick={this.props.onCourseSelected.bind(this, c)}>{c.name}</button>
                     <br />
                 </div>
             );
