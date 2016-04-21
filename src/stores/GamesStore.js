@@ -9,6 +9,10 @@ class GamesStore extends EventEmitter {
         super();
     }
 
+    getAll() {
+        return games;
+    }
+
     add(game) {
         games.push(_.extend(game, {id: new Date().getTime()}));
         this.emit('change');

@@ -8,6 +8,7 @@ export default class Menu extends Component {
             <ul class="nav navbar-nav">
                 <li><Link to="/">Menu</Link></li>
                 <li><Link to="/newgame">New game</Link></li>
+                <li><Link to="/resumegame">Resume game</Link></li>
                 <li><Link to="/players">Players</Link></li>
                 <li><Link to="/courses">Courses</Link></li>
             </ul>

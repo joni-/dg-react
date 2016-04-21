@@ -12,6 +12,7 @@ export default class GameComponent extends Component {
         this.state = {
             currentHole: 0,
             showScorecard: false,
+            course: this.props.course,
             players: this.props.players.map((p) => {
                 return _.extend(p, {scores: _.map(this.props.course.pars, _.clone)});
             })
