@@ -5,6 +5,9 @@ var path = require('path');
 module.exports = {
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
+  devServer: {
+    host: "0.0.0.0"
+  },
   entry: "./app.js",
   module: {
     loaders: [
