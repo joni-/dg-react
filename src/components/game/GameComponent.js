@@ -2,6 +2,8 @@ import * as _ from 'lodash';
 import React, { Component } from 'react'
 
 import Scorecard from './Scorecard';
+import GamesStore from '../../stores/GamesStore';
+import * as GamesActions from '../../actions/GamesActions';
 
 
 export default class GameComponent extends Component {
@@ -14,12 +16,14 @@ export default class GameComponent extends Component {
                 return _.extend(p, {scores: _.map(this.props.course.pars, _.clone)});
             })
         };
+        GamesActions.createGame(this.state);
     }
 
     previousHole() {
         this.setState({
             currentHole: this.state.currentHole - 1
         });
+        GamesActions.updateGame(this.state);
     }
 
     nextHole() {
@@ -33,6 +37,7 @@ export default class GameComponent extends Component {
         this.setState({
             players: this.state.players
         });
+        GamesActions.updateGame(this.state);
     }
 
     increaseScore(player) {
@@ -40,12 +45,14 @@ export default class GameComponent extends Component {
         this.setState({
             players: this.state.players
         });
+        GamesActions.updateGame(this.state);
     }
 
     toggleScorecard() {
         this.setState({
             showScorecard: !this.state.showScorecard
         });
+        GamesActions.updateGame(this.state);
     }
 
     render() {
