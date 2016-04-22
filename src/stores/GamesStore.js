@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
-var games = [];
+localStorage.games = localStorage.games || JSON.stringify([]);
 
 class GamesStore extends EventEmitter {
     constructor() {
@@ -10,17 +10,21 @@ class GamesStore extends EventEmitter {
     }
 
     getAll() {
-        return games;
+        return JSON.parse(localStorage.games);
     }
 
     add(game) {
+        var games = JSON.parse(localStorage.games);
         games.push(_.extend(game, {id: new Date().getTime()}));
+        localStorage.games = JSON.stringify(games);
         this.emit('change');
     }
 
     update(game) {
+        var games = JSON.parse(localStorage.games);
         const i = _.findIndex(games, (g) => { return g.id === game.id; });
         games[i] = game;
+        localStorage.games = JSON.stringify(games);
         this.emit('change');
     }
 
