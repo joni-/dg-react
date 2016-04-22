@@ -32,8 +32,8 @@ class PlayersStore extends EventEmitter {
     }
 
     delete(id) {
-        const players = JSON.parse(localStorage.players);
-        const newPlayers = _.remove(players, (p) => { return p.id === id; });
+        var players = JSON.parse(localStorage.players);
+        _.remove(players, (p) => { return p.id === id; });
         localStorage.players = JSON.stringify(players);
         this.emit('change');
     }
