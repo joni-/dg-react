@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
 
-var courses = [
+var dummyCourses = [
     {
         id: 1,
         name: 'Utra',
@@ -21,26 +21,32 @@ var courses = [
     }
 ];
 
+localStorage.courses = localStorage.courses || JSON.stringify(dummyCourses);
+
 class CoursesStore extends EventEmitter {
     constructor() {
         super();
     }
 
     getAll() {
-        return courses;
+        return JSON.parse(localStorage.courses);
     }
 
     add(name, pars) {
+        var courses = JSON.parse(localStorage.courses);
         courses.push({
             id: new Date().getTime(),
             name: name,
             pars: pars
         });
+        localStorage.courses = JSON.stringify(courses);
         this.emit('change');
     }
 
     delete(id) {
+        var courses = JSON.parse(localStorage.courses);
         _.remove(courses, (c) => { return c.id === id; });
+        localStorage.courses = JSON.stringify(courses);
         this.emit('change');
     }
 
