@@ -22,7 +22,7 @@ class PlayersStore extends EventEmitter {
     }
 
     add(name) {
-        const players = JSON.parse(localStorage.players);
+        var players = JSON.parse(localStorage.players);
         players.push({
             id: new Date().getTime(),
             name: name
