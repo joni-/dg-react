@@ -10,13 +10,7 @@ export default class GameComponent extends Component {
     constructor(props) {
         super(props);
         if (this.props.game) {
-            const g = this.props.game;
-            this.state = {
-                currentHole: g.currentHole,
-                showScorecard: g.showScorecard,
-                course: g.course,
-                players: g.players
-            };
+            this.state = this.props.game;
         } else {
             this.state = {
                 currentHole: 0,
@@ -24,7 +18,7 @@ export default class GameComponent extends Component {
                 course: this.props.course,
                 players: this.props.players.map((p) => {
                     return _.extend(p, {scores: _.map(this.props.course.pars, _.clone)});
-                })
+                })                
             };
             GamesActions.createGame(this.state);
         }
@@ -34,7 +28,6 @@ export default class GameComponent extends Component {
         this.setState({
             currentHole: this.state.currentHole - 1
         });
-        GamesActions.updateGame(this.state);
     }
 
     nextHole() {
@@ -48,7 +41,6 @@ export default class GameComponent extends Component {
         this.setState({
             players: this.state.players
         });
-        GamesActions.updateGame(this.state);
     }
 
     increaseScore(player) {
@@ -56,17 +48,18 @@ export default class GameComponent extends Component {
         this.setState({
             players: this.state.players
         });
-        GamesActions.updateGame(this.state);
     }
 
     toggleScorecard() {
         this.setState({
             showScorecard: !this.state.showScorecard
         });
-        GamesActions.updateGame(this.state);
     }
 
     render() {
+        if (this.state.id) {
+            GamesActions.updateGame(this.state);
+        }
         const playerList = this.state.players.map((p) => {
             const totalScore = _.sum(p.scores);
             return (
