@@ -3,12 +3,14 @@ import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
 
-var players = [
+var dummyPlayers = [
     {id: 1, name: 'Foo'},
     {id: 2, name: 'Bar'},
     {id: 3, name: 'Baz'},
     {id: 4, name: 'Zyz'}
 ];
+
+localStorage.players = localStorage.players || JSON.stringify(dummyPlayers);
 
 class PlayersStore extends EventEmitter {
     constructor() {
@@ -16,19 +18,23 @@ class PlayersStore extends EventEmitter {
     }
 
     getAll() {
-        return players;
+        return JSON.parse(localStorage.players);
     }
 
     add(name) {
+        const players = JSON.parse(localStorage.players);
         players.push({
             id: new Date().getTime(),
             name: name
         });
+        localStorage.players = JSON.stringify(players);
         this.emit('change');
     }
 
     delete(id) {
-        _.remove(players, (p) => { return p.id === id; });
+        const players = JSON.parse(localStorage.players);
+        const newPlayers = _.remove(players, (p) => { return p.id === id; });
+        localStorage.players = JSON.stringify(players);
         this.emit('change');
     }
 
