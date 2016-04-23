@@ -7,7 +7,7 @@ import Menu from './menu/Menu'
 export default class Layout extends Component {
     render() {
         return (
-            <div>
+            <div id="layout">
                 {this.props.children}
                 <Link to="/">Back to menu</Link>
             </div>
