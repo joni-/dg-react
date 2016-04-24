@@ -14,9 +14,9 @@ export default class CourseSelectionList extends Component {
             );
         });
         return (
-            <div>
+            <ul class="list-group">
                 {courseList}
-            </div>
+            </ul>
         )
     }
 }
