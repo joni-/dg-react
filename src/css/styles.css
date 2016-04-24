@@ -4,10 +4,6 @@ html, body, #app {
 }
 
 .menu-item {
-    font-size: 5em;
+    font-size: 2em;
     text-align: center;
-}
-
-.menu {
-    margin-top: 50%;
 }
