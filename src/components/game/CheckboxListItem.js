@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 
 
 export default class CheckboxListItem extends Component {
-    isChecked() {
-        console.log('yoyoyo');
-        return false;
-    }
-
     render() {
+        const mark = this.props.isSelected == true ? 'X' : '';
         return (
-            <div>
-                <label>{this.props.label}
-                    <input onChange={this.props.onChange.bind(this)} type="checkbox" />
-                </label>
-            </div>
+            <li class="list-group-item" onClick={this.props.onChange.bind(this)}>
+                <span class="badge">{mark}</span>
+                {this.props.label}
+            </li>
         )
     }
 }
