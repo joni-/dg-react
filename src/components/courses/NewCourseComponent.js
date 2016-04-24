@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 import * as CoursesActions from '../../actions/CoursesActions';
 import HoleCountSelection from './HoleCountSelection';
+import ParSelectionList from './ParSelectionList';
+
 
 const DEFAULT_PAR_COUNT = 3;
 const DEFAULT_HOLE_COUNT = 9;
@@ -56,16 +58,6 @@ export default class NewCourseComponent extends Component {
     }
 
     render() {
-        const parList = this.state.pars.map((p, i) => {
-            return (
-                <div key={i}>
-                    {i + 1}
-                    <button onClick={this.decreasePar.bind(this, i)}>-</button>
-                    {p}
-                    <button onClick={this.increasePar.bind(this, i)}>+</button>
-                </div>
-            );
-        });
         return (
             <div>
                 <label>Name:
@@ -77,7 +69,11 @@ export default class NewCourseComponent extends Component {
                     onHoleCountDecreased={this.decreaseHoleCount.bind(this)}
                     onHoleCountIncreased={this.increaseHoleCount.bind(this)}/>
 
-                {parList}
+                <ParSelectionList
+                    pars={this.state.pars}
+                    onParDecreased={this.decreasePar.bind(this)}
+                    onParIncreased={this.increasePar.bind(this)}/>
+
                 <button class="btn btn-success" onClick={this.createCourse.bind(this)}>Add</button>
             </div>
         )
