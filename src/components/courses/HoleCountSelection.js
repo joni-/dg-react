@@ -5,10 +5,10 @@ export default class HoleCountSelection extends Component {
     render() {
         return (
             <div>
-                No. of holes
-                <button onClick={this.props.onHoleCountDecreased.bind(this)}>-</button>
-                {this.props.holeCount}
-                <button onClick={this.props.onHoleCountIncreased.bind(this)}>+</button>
+                <label>No. of holes</label>
+                <button class="btn btn-info" onClick={this.props.onHoleCountDecreased.bind(this)}>-</button>
+                <strong>{this.props.holeCount}</strong>
+                <button class="btn btn-info" onClick={this.props.onHoleCountIncreased.bind(this)}>+</button>
             </div>
         );
     }
