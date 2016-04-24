@@ -51,8 +51,8 @@ export default class PlayersComponent extends Component {
             <div>
                 <h1>Players</h1>
                 <PlayersListComponent players={this.state.players} onPlayerDeleted={this.deletePlayer.bind(this)} />
-                <input value={this.state.newPlayerName} onChange={this.playerNameChanged.bind(this)} />
-                <button onClick={this.addNewPlayer.bind(this)}>Add</button>
+                <input class="form-control" value={this.state.newPlayerName} onChange={this.playerNameChanged.bind(this)} />
+                <button class="btn btn-success" onClick={this.addNewPlayer.bind(this)}>Add</button>
             </div>
         )
     }
