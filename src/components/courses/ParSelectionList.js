@@ -16,9 +16,19 @@ export default class ParSelectionList extends Component {
             );
         });
         return (
-            <div>
-                {parList}
-            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th></th>
+                        <th>Par</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {parList}
+                </tbody>
+            </table>
         );
     }
 }
