@@ -10,7 +10,7 @@ export default class PlayersListComponent extends Component {
         });
         return (
             <div>
-                <ul>
+                <ul class="list-group">
                     {playerList}
                 </ul>
             </div>
