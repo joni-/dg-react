@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
 
 import CoursesStore from '../../stores/CoursesStore';
+import CourseSelectionList from './CourseSelectionList';
 
 export default class SelectCourseComponent extends Component {
     render() {
-        const courseList = CoursesStore.getAll().map((c) => {
-            return (
-                <div key={c.id}>
-                    <button onClick={this.props.onCourseSelected.bind(this, c)}>{c.name}</button>
-                    <br />
-                </div>
-            );
-        });
         return (
             <div>
                 <h1>Select course</h1>
-                {courseList}
+                <CourseSelectionList
+                    courses={CoursesStore.getAll()}
+                    onCourseSelected={this.props.onCourseSelected.bind(this)}/>
             </div>
         )
     }
