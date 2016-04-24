@@ -47,9 +47,6 @@ export default class PlayersComponent extends Component {
     }
 
     render() {
-        const playerList = this.state.players.map((p) => {
-            return <li key={p.id}>{p.name} <button onClick={this.deletePlayer.bind(this, p)}>X</button></li>;
-        });
         return (
             <div>
                 <h1>Players</h1>
