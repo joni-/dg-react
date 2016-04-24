@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import PlayersStore from '../stores/PlayersStore';
 import * as PlayersActions from '../actions/PlayersActions'
+import PlayersListComponent from './players/PlayersListComponent';
 
 
 export default class PlayersComponent extends Component {
@@ -52,9 +53,7 @@ export default class PlayersComponent extends Component {
         return (
             <div>
                 <h1>Players</h1>
-                <ul>
-                    {playerList}
-                </ul>
+                <PlayersListComponent players={this.state.players} onPlayerDeleted={this.deletePlayer.bind(this)} />
                 <input value={this.state.newPlayerName} onChange={this.playerNameChanged.bind(this)} />
                 <button onClick={this.addNewPlayer.bind(this)}>Add</button>
             </div>
