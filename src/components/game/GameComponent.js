@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import Scorecard from './Scorecard';
 import GamesStore from '../../stores/GamesStore';
 import * as GamesActions from '../../actions/GamesActions';
+import HoleSelection from './HoleSelection';
 
 
 export default class GameComponent extends Component {
@@ -18,7 +19,7 @@ export default class GameComponent extends Component {
                 course: this.props.course,
                 players: this.props.players.map((p) => {
                     return _.extend(p, {scores: _.map(this.props.course.pars, _.clone)});
-                })                
+                })
             };
             GamesActions.createGame(this.state);
         }
@@ -80,9 +81,10 @@ export default class GameComponent extends Component {
 
         return (
             <div>
-                <button onClick={this.previousHole.bind(this)}>Previous</button>
-                {this.state.currentHole + 1}
-                <button onClick={this.nextHole.bind(this)}>Next</button>
+                <HoleSelection
+                    currentHole={this.state.currentHole + 1}
+                    onNextClicked={this.nextHole.bind(this)}
+                    onPreviousClicked={this.previousHole.bind(this)} />
 
                 {playerList}
 
