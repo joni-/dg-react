@@ -16,9 +16,20 @@ export default class PlayerScoreInputList extends Component {
             );
         });
         return (
-            <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th></th>
+                        <th>Score</th>
+                        <th></th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {playerList}
-            </div>
+                </tbody>
+            </table>
         )
     }
 }

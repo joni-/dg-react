@@ -6,13 +6,17 @@ export default class PlayerScoreEntry extends Component {
         const p = this.props.player;
         const totalScore = _.sum(p.scores);
         return (
-            <div>
-                {p.name}
-                <button onClick={this.props.onScoreDecreased.bind(this, p)}>-</button>
-                {p.scores[this.props.currentHole]}
-                <button onClick={this.props.onScoreIncreased.bind(this, p)}>+</button>
-                ({ totalScore })
-            </div>
+            <tr>
+                <td>{p.name}</td>
+                <td>
+                    <button class="btn btn-default" onClick={this.props.onScoreDecreased.bind(this, p)}>-</button>
+                </td>
+                <td>{p.scores[this.props.currentHole]}</td>
+                <td>
+                    <button class="btn btn-default" onClick={this.props.onScoreIncreased.bind(this, p)}>+</button>
+                </td>
+                <td>({ totalScore })</td>
+            </tr>
         )
     }
 }
