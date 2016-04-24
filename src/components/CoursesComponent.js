@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import CoursesStore from '../stores/CoursesStore';
 import NewCourseComponent from './courses/NewCourseComponent';
 import * as CoursesActions from '../actions/CoursesActions';
-
+import CourseListComponent from './courses/CourseListComponent';
 
 export default class CoursesComponent extends Component {
     constructor() {
@@ -33,15 +33,10 @@ export default class CoursesComponent extends Component {
     }
 
     render() {
-        const courseList = this.state.courses.map((c) => {
-            return (<li key={c.id}>{c.name} ({c.pars.length}) <button onClick={this.deleteCourse.bind(this, c)}>X</button></li>);
-        });
         return (
             <div>
                 <h1>Courses</h1>
-                <ul>
-                    {courseList}
-                </ul>
+                <CourseListComponent courses={this.state.courses} onCourseDeleted={this.deleteCourse.bind(this)} />
                 <NewCourseComponent />
             </div>
         )
