@@ -82,7 +82,7 @@ export default class GameComponent extends Component {
                     onScoreIncreased={this.increaseScore.bind(this)}/>
 
                 <br />
-                <button onClick={this.toggleScorecard.bind(this)}>Toggle scorecard</button>
+                <button class="btn btn-success" onClick={this.toggleScorecard.bind(this)}>Toggle scorecard</button>
                 {scorecard}
             </div>
         )

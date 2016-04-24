@@ -18,7 +18,7 @@ export default class Scorecard extends Component {
             );
         });
         return (
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
