@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import PlayersStore from '../../stores/PlayersStore';
-import CheckboxListItem from './CheckboxListItem';
+import PlayerSelectionList from './PlayerSelectionList';
 
 
 export default class SelectPlayersComponent extends Component {
@@ -21,14 +21,13 @@ export default class SelectPlayersComponent extends Component {
     }
 
     render() {
-        const playersList = this.state.players.map((p, i) => {
-            return <CheckboxListItem onChange={this.playerChanged.bind(this, i)} key={p.id} label={p.name} />
-        });
         return (
             <div>
                 <h1>Select players</h1>
-                {playersList}
-                <button onClick={this.props.onPlayersSelected.bind(this, this.state.players)}>Continue</button>
+                <PlayerSelectionList
+                    players={this.state.players}
+                    onPlayerSelected={this.playerChanged.bind(this)}/>
+                <button class="btn btn-success" onClick={this.props.onPlayersSelected.bind(this, this.state.players)}>Continue</button>
             </div>
         )
     }
