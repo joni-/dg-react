@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import React, { Component } from 'react';
 
 import * as CoursesActions from '../../actions/CoursesActions';
-
+import HoleCountSelection from './HoleCountSelection';
 
 const DEFAULT_PAR_COUNT = 3;
 const DEFAULT_HOLE_COUNT = 9;
@@ -69,12 +69,12 @@ export default class NewCourseComponent extends Component {
         return (
             <div>
                 Name: <input value={this.state.name} onChange={this.nameChanged.bind(this)} />
-                <br />
-                No. of holes
-                <button onClick={this.decreaseHoleCount.bind(this)}>-</button>
-                {this.state.pars.length}
-                <button onClick={this.increaseHoleCount.bind(this)}>+</button>
-                <br />
+
+                <HoleCountSelection
+                    holeCount={this.state.pars.length}
+                    onHoleCountDecreased={this.decreaseHoleCount.bind(this)}
+                    onHoleCountIncreased={this.increaseHoleCount.bind(this)}/>
+
                 {parList}
                 <button onClick={this.createCourse.bind(this)}>Add</button>
             </div>
