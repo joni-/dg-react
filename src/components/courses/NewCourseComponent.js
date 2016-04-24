@@ -68,7 +68,9 @@ export default class NewCourseComponent extends Component {
         });
         return (
             <div>
-                Name: <input value={this.state.name} onChange={this.nameChanged.bind(this)} />
+                <label>Name:
+                    <input class="form-control" value={this.state.name} onChange={this.nameChanged.bind(this)} />
+                </label>
 
                 <HoleCountSelection
                     holeCount={this.state.pars.length}
@@ -76,7 +78,7 @@ export default class NewCourseComponent extends Component {
                     onHoleCountIncreased={this.increaseHoleCount.bind(this)}/>
 
                 {parList}
-                <button onClick={this.createCourse.bind(this)}>Add</button>
+                <button class="btn btn-success" onClick={this.createCourse.bind(this)}>Add</button>
             </div>
         )
     }
