@@ -15,7 +15,10 @@ class GamesStore extends EventEmitter {
 
     add(game) {
         var games = JSON.parse(localStorage.games);
-        games.push(_.extend(game, {id: new Date().getTime()}));
+        games.push(_.extend(game, {
+            id: new Date().getTime(),
+            date: new Date()
+        }));
         localStorage.games = JSON.stringify(games);
         this.emit('change');
     }
