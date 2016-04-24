@@ -5,6 +5,7 @@ import Scorecard from './Scorecard';
 import GamesStore from '../../stores/GamesStore';
 import * as GamesActions from '../../actions/GamesActions';
 import HoleSelection from './HoleSelection';
+import PlayerScoreInputList from './PlayerScoreInputList';
 
 
 export default class GameComponent extends Component {
@@ -61,18 +62,6 @@ export default class GameComponent extends Component {
         if (this.state.id) {
             GamesActions.updateGame(this.state);
         }
-        const playerList = this.state.players.map((p) => {
-            const totalScore = _.sum(p.scores);
-            return (
-                <div key={p.id}>
-                    {p.name}
-                    <button onClick={this.decreaseScore.bind(this, p)}>-</button>
-                    {p.scores[this.state.currentHole]}
-                    <button onClick={this.increaseScore.bind(this, p)}>+</button>
-                    ({ totalScore })
-                </div>
-            );
-        });
 
         var scorecard = null;
         if (this.state.showScorecard) {
@@ -86,7 +75,11 @@ export default class GameComponent extends Component {
                     onNextClicked={this.nextHole.bind(this)}
                     onPreviousClicked={this.previousHole.bind(this)} />
 
-                {playerList}
+                <PlayerScoreInputList
+                    currentHole={this.state.currentHole}
+                    players={this.state.players}
+                    onScoreDecreased={this.decreaseScore.bind(this)}
+                    onScoreIncreased={this.increaseScore.bind(this)}/>
 
                 <br />
                 <button onClick={this.toggleScorecard.bind(this)}>Toggle scorecard</button>
