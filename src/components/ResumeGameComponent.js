@@ -22,14 +22,14 @@ export default class ResumeGameComponent extends Component {
 
     render() {
         const gameList = GamesStore.getAll().map((game) => {
-            return (<li onClick={this.resumeGame.bind(this, game)}>{game.id} - {game.course.name}</li>);
+            return (<li class="list-group-item" onClick={this.resumeGame.bind(this, game)}>{game.date} - {game.course.name}</li>);
         });
         var result;
         if (this.state.showList) {
             result = (
                 <div>
-                    <h1>Resume game (list games here)</h1>
-                    <ul>
+                    <h1>Resume game</h1>
+                    <ul class="list-group">
                         {gameList}
                     </ul>
                 </div>
