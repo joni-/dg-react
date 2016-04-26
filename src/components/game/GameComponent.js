@@ -72,6 +72,7 @@ export default class GameComponent extends Component {
             <div>
                 <HoleSelection
                     currentHole={this.state.currentHole + 1}
+                    lastHole={this.state.course.pars.length}
                     onNextClicked={this.nextHole.bind(this)}
                     onPreviousClicked={this.previousHole.bind(this)} />
 
