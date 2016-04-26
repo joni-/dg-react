@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import React, { Component } from 'react'
 
 import PlayersStore from '../../stores/PlayersStore';
@@ -27,7 +28,12 @@ export default class SelectPlayersComponent extends Component {
                 <PlayerSelectionList
                     players={this.state.players}
                     onPlayerSelected={this.playerChanged.bind(this)}/>
-                <button class="btn btn-success" onClick={this.props.onPlayersSelected.bind(this, this.state.players)}>Continue</button>
+                <button
+                    class="btn btn-success"
+                    onClick={this.props.onPlayersSelected.bind(this, this.state.players)}
+                    disabled={!_.some(this.state.players, {selected: true})}>
+                    Continue
+                </button>
             </div>
         )
     }
