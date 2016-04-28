@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import React, { Component } from 'react';
+import { hashHistory } from 'react-router';
 
 import * as CoursesActions from '../../actions/CoursesActions';
 import HoleCountSelection from './HoleCountSelection';
@@ -35,6 +36,7 @@ export default class NewCourseComponent extends Component {
         this.setState({
             name: ''
         });
+        hashHistory.push('courses');
     }
 
     nameChanged(e) {
@@ -60,6 +62,8 @@ export default class NewCourseComponent extends Component {
     render() {
         return (
             <div>
+                <h1>New course</h1>
+
                 <label>Name:
                     <input class="form-control" value={this.state.name} onChange={this.nameChanged.bind(this)} />
                 </label>

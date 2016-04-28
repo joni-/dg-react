@@ -8,6 +8,7 @@ import CoursesComponent from './components/CoursesComponent';
 import NewGameComponent from './components/NewGameComponent';
 import ResumeGameComponent from './components/ResumeGameComponent';
 import Menu from './components/menu/Menu';
+import NewCourseComponent from './components/courses/NewCourseComponent';
 
 
 const app = document.getElementById('app');
@@ -19,5 +20,6 @@ ReactDOM.render((
             <Route path="resumeGame" component={ResumeGameComponent} />
             <Route path="players" component={PlayersComponent} />
             <Route path="courses" component={CoursesComponent} />
+            <Route path="newcourse" component={NewCourseComponent} />
         </Route>
     </Router>), app);

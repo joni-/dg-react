@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import CoursesStore from '../stores/CoursesStore';
-import NewCourseComponent from './courses/NewCourseComponent';
 import * as CoursesActions from '../actions/CoursesActions';
 import CourseListComponent from './courses/CourseListComponent';
 
@@ -37,7 +37,7 @@ export default class CoursesComponent extends Component {
             <div>
                 <h1>Courses</h1>
                 <CourseListComponent courses={this.state.courses} onCourseDeleted={this.deleteCourse.bind(this)} />
-                <NewCourseComponent />
+                <Link to="newcourse">Add new course</Link>
             </div>
         )
     }
