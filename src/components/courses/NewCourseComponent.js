@@ -64,9 +64,11 @@ export default class NewCourseComponent extends Component {
             <div>
                 <h1>New course</h1>
 
-                <label>Name:
-                    <input class="form-control" value={this.state.name} onChange={this.nameChanged.bind(this)} />
-                </label>
+                <input
+                    class="form-control"
+                    value={this.state.name}
+                    onChange={this.nameChanged.bind(this)}
+                    placeholder="Course name" />
 
                 <HoleCountSelection
                     holeCount={this.state.pars.length}
@@ -78,7 +80,12 @@ export default class NewCourseComponent extends Component {
                     onParDecreased={this.decreasePar.bind(this)}
                     onParIncreased={this.increasePar.bind(this)}/>
 
-                <button class="btn btn-success" onClick={this.createCourse.bind(this)}>Add</button>
+                <button
+                    class="btn btn-success"
+                    onClick={this.createCourse.bind(this)}
+                    disabled={!this.state.name || this.state.pars.length === 0}>
+                    Add
+                </button>
             </div>
         )
     }
