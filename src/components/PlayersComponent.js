@@ -35,7 +35,6 @@ export default class PlayersComponent extends Component {
     }
 
     confirmDelete(p) {
-        console.log('Ask for confirmation');
         this.setState({
             playerToDelete: p
         });
