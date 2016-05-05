@@ -4,6 +4,7 @@ import PlayersStore from '../stores/PlayersStore';
 import * as PlayersActions from '../actions/PlayersActions'
 import PlayersListComponent from './players/PlayersListComponent';
 import AddPlayerComponent from './players/AddPlayerComponent';
+import ConfirmationModal from './common/ConfirmationModal';
 
 
 export default class PlayersComponent extends Component {
@@ -33,15 +34,37 @@ export default class PlayersComponent extends Component {
         PlayersActions.createPlayer(name);
     }
 
-    deletePlayer(p) {
-        PlayersActions.deletePlayer(p.id);
+    confirmDelete(p) {
+        console.log('Ask for confirmation');
+        this.setState({
+            playerToDelete: p
+        });
+    }
+
+    hideConfirmationModal() {
+        delete this.state.playerToDelete;
+        this.setState(this.state);
+    }
+
+    deletePlayer() {
+        const id = this.state.playerToDelete.id;
+        delete this.state.playerToDelete;
+        this.setState(this.state);
+        PlayersActions.deletePlayer(id);
     }
 
     render() {
+        var confirmationModal;
+        if (this.state.playerToDelete) {
+            confirmationModal = (<ConfirmationModal
+                            onCancel={this.hideConfirmationModal.bind(this)}
+                            onDelete={this.deletePlayer.bind(this)} />);
+        }
         return (
             <div>
+                {confirmationModal}
                 <h1>Players</h1>
-                <PlayersListComponent players={this.state.players} onPlayerDeleted={this.deletePlayer.bind(this)} />
+                <PlayersListComponent players={this.state.players} onPlayerDeleted={this.confirmDelete.bind(this)} />
                 <AddPlayerComponent onNewPlayerAdded={this.addNewPlayer.bind(this)} />
             </div>
         )
