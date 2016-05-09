@@ -61,6 +61,8 @@ export default class CoursesComponent extends Component {
                 <CourseListComponent
                     courses={this.state.courses}
                     onCourseDeleted={this.confirmDelete.bind(this)} />
+                <Link to="downloadcourse">Download courses</Link>
+                <br />
                 <Link to="newcourse">Add new course</Link>
             </div>
         )

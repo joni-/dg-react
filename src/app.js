@@ -9,6 +9,7 @@ import NewGameComponent from './components/NewGameComponent';
 import ResumeGameComponent from './components/ResumeGameComponent';
 import Menu from './components/menu/Menu';
 import NewCourseComponent from './components/courses/NewCourseComponent';
+import DownloadCourseComponent from './components/DownloadCourseComponent';
 
 
 const app = document.getElementById('app');
@@ -21,5 +22,6 @@ ReactDOM.render((
             <Route path="players" component={PlayersComponent} />
             <Route path="courses" component={CoursesComponent} />
             <Route path="newcourse" component={NewCourseComponent} />
+            <Route path="downloadcourse" component={DownloadCourseComponent} />
         </Route>
     </Router>), app);

@@ -23,6 +23,11 @@ var dummyCourses = [
 
 localStorage.courses = localStorage.courses || JSON.stringify(dummyCourses);
 
+function getNextId() {
+    const course = _.maxBy(JSON.parse(localStorage.courses), (c) => { return c.id; });
+    return course ? (course.id + 1) : 1;
+}
+
 class CoursesStore extends EventEmitter {
     constructor() {
         super();
@@ -35,7 +40,7 @@ class CoursesStore extends EventEmitter {
     add(name, pars) {
         var courses = JSON.parse(localStorage.courses);
         courses.push({
-            id: new Date().getTime(),
+            id: getNextId(),
             name: name,
             pars: pars
         });
